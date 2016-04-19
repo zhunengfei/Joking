@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.guog.gh.mretrofittest.activity.MainActivity">
+
+    <item
+        android:id="@+id/mainMenu_joke"
+        android:title="@string/joke_activity"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/mainMenu_pic"
+        android:title="@string/pic_activity"
+        app:showAsAction="always"
+        />
+
+</menu>
