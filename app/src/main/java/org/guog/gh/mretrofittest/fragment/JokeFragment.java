@@ -48,7 +48,7 @@ public class JokeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activity = getActivity();
+        activity =  getActivity();
     }
 
     private RecyclerView recylerView;
@@ -80,6 +80,7 @@ public class JokeFragment extends Fragment {
         recylerView.setAdapter(adapter);
 
         final Handler handler = new Handler() {
+
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
@@ -90,7 +91,6 @@ public class JokeFragment extends Fragment {
                     default:
                         break;
                 }
-
             }
         };
 
@@ -151,4 +151,5 @@ public class JokeFragment extends Fragment {
         super.onPause();
         Log.e("JokeFragment", "onPause");
     }
+
 }

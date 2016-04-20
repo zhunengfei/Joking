@@ -14,7 +14,6 @@ import java.util.List;
 /**
  * Created by gh on 16/4/18.
  */
-
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
 
     private Context context;
@@ -40,22 +39,24 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(final HomeAdapter.MyViewHolder holder, int position) {
         holder.tv.setText(mData.get(position));
-        holder.tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int pos = holder.getLayoutPosition();
-                itemClickListener.onItemClick(holder.itemView,pos);
-            }
-        });
+        if (itemClickListener != null) {
+            holder.tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    itemClickListener.onItemClick(holder.itemView, pos);
+                }
+            });
 
-        holder.tv.setOnLongClickListener(new View.OnLongClickListener(){
-            @Override
-            public boolean onLongClick(View v) {
-                int pos = holder.getLayoutPosition();
-                itemClickListener.onItemLongClick(holder.itemView,pos);
-                return false;
-            }
-        });
+            holder.tv.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    itemClickListener.onItemLongClick(holder.itemView, pos);
+                    return true;//这个位置要返回true，事件不会继续传递，否则还会触发onItemClick
+                }
+            });
+        }
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -74,8 +75,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     }
 
     public interface ItemClickListener {
-        public void onItemClick(View view,int position);
-        public void onItemLongClick(View view,int position);
+        void onItemClick(View view, int position);
+
+        void onItemLongClick(View view, int position);
     }
 
 }
